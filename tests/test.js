@@ -15,7 +15,7 @@ test("bem(block, elem, Object) full signature call", assert => {
 
   assert.equal(
     classname,
-    "block__elem block__elem--foo-bar block__elem--baz",
+    "block__elem -fooBar -baz",
     "calling bem with full signature returns the expected string"
   );
 
@@ -27,7 +27,7 @@ test("bem(block, elem, Array) full signature call", assert => {
 
   assert.equal(
     classname,
-    "block__elem block__elem--foo-bar block__elem--baz",
+    "block__elem -fooBar -baz",
     "calling bem with full signature returns the expected string"
   );
 
@@ -37,7 +37,7 @@ test("bem(block, elem, Array) full signature call", assert => {
 test("bem(block, Object) returns the expected classname", assert => {
   assert.equal(
     bem("block", { foo: true, bar: false, bazQux: 1 }),
-    "block block--foo block--baz-qux"
+    "block -foo -bazQux"
   );
 
   assert.end();
@@ -46,7 +46,7 @@ test("bem(block, Object) returns the expected classname", assert => {
 test("bem(block, Array) returns the expected classname", assert => {
   assert.equal(
     bem("block", ["foo", undefined, "bazQux"]),
-    "block block--foo block--baz-qux"
+  "block -foo -bazQux"
   );
 
   assert.end();
@@ -55,7 +55,7 @@ test("bem(block, Array) returns the expected classname", assert => {
 test("bem(block, Object) returns kebab case modifiers", assert => {
   assert.equal(
     bem("block", { FooBar: true, ["BAZ-Qux"]: true, DOMContentLoaded: true }),
-    "block block--foo-bar block--baz-qux block--dom-content-loaded"
+    "block -fooBar -BAZQux -DOMContentLoaded"
   );
 
   assert.end();
@@ -64,7 +64,7 @@ test("bem(block, Object) returns kebab case modifiers", assert => {
 test("bem(block, Array) returns kebab case modifiers", assert => {
   assert.equal(
     bem("block", ["FooBar", "BAZ-Qux", "DOMContentLoaded"]),
-    "block block--foo-bar block--baz-qux block--dom-content-loaded"
+    "block -fooBar -BAZQux -DOMContentLoaded"
   );
 
   assert.end();
@@ -101,7 +101,7 @@ test("bem(block)(Object) returns the expected classname", assert => {
 
   assert.equal(
     block({ foo: true, bar: false, bazQux: 1 }),
-    "block block--foo block--baz-qux"
+    "block -foo -bazQux"
   );
 
   assert.end();
@@ -112,7 +112,7 @@ test("bem(block)(Array) returns the expected classname", assert => {
 
   assert.equal(
     block(["foo", undefined, "bazQux"]),
-    "block block--foo block--baz-qux"
+    "block -foo -bazQux"
   );
 
   assert.end();
@@ -123,7 +123,7 @@ test("bem(block)(elem, Object) returns the expected classname", assert => {
 
   assert.equal(
     block("elem", { foo: true, bazQux: true, bar: 1 }),
-    "block__elem block__elem--foo block__elem--baz-qux block__elem--bar"
+    "block__elem -foo -bazQux -bar"
   );
 
   assert.end();
@@ -134,7 +134,7 @@ test("bem(block)(elem, Array) returns the expected classname", assert => {
 
   assert.equal(
     block("elem", ["foo", undefined, "bazQux", "bar"]),
-    "block__elem block__elem--foo block__elem--baz-qux block__elem--bar"
+    "block__elem -foo -bazQux -bar"
   );
 
   assert.end();
@@ -171,7 +171,7 @@ test("bem(block + elem, Object) returns the expected classname", assert => {
 
   assert.equal(
     elem({ foo: true, bazQux: true, bar: 1 }),
-    "block__elem block__elem--foo block__elem--baz-qux block__elem--bar"
+    "block__elem -foo -bazQux -bar"
   );
 
   assert.end();
@@ -208,7 +208,7 @@ test("bem(block, elem, Object) returns the expected classname", assert => {
 
   assert.equal(
     elem({ foo: true, bazQux: true, bar: 1 }),
-    "block__elem block__elem--foo block__elem--baz-qux block__elem--bar"
+    "block__elem -foo -bazQux -bar"
   );
 
   assert.end();
@@ -217,7 +217,7 @@ test("bem(block, elem, Object) returns the expected classname", assert => {
 test("hyphens on kebab case modifiers", assert => {
   assert.equal(
     bem("block", ["----Foo-------Bar", "BAZ--Qux", "-DOM-Content-Loaded"]),
-    "block block--foo-bar block--baz-qux block--dom-content-loaded"
+    "block -fooBar -BAZQux -DOMContentLoaded"
   );
 
   assert.end();

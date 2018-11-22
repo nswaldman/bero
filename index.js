@@ -24,16 +24,11 @@
         : Array.apply(null, arrayLike);
   }
 
-  function toHyphen(match, hyphen, index) {
-    var prefix = !hyphen ? "-" : "";
-    var text = hyphen ? match.substr(hyphen.length - 1) : match;
-    return prefix + text;
-  }
-  function toKebabCase(classname) {
-    return classname
-      .replace(/(-*)[A-Z](?:[^A-Z-]|$)/g, toHyphen)
-      .replace(/^-*/, "")
-      .toLowerCase();
+  function toCamelCase(classname) {
+      return classname
+          .replace(/(?:-{2,}|^-)/g, '')
+          .replace(/^[A-Z][a-z]/g, function(g) {return g.toLowerCase(); })
+          .replace(/-[A-Za-z]/g, function (g) { return g[1].toUpperCase(); });
   }
 
   function isMods(target) {
@@ -56,7 +51,7 @@
       var value = mods[key];
       if (mods.hasOwnProperty(key) && value) {
         classes.push(
-          identifier + "--" + toKebabCase(isModsArray ? value : key)
+          "-" + toCamelCase(isModsArray ? value : key)
         );
       }
     }
